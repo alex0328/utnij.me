@@ -1,0 +1,33 @@
+{% extends 'cut_app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="wrapper" id="wrapper">
+
+        {% if short_url %}
+
+        <p>I'm sorry, but we couldnt find your url in our database.
+            Please use our service to cut your url one more time</p>
+
+        {% endif %}
+
+        {% if cut_url_ready %}
+
+        <div>
+            <p id="get_path"></p> {{ cut_url_ready }}
+        </div>
+
+        {% else %}
+
+        <form method="post">
+            {% csrf_token %}
+            <p>Put your url here:</p>
+            <p>{{ form.as_p }}</p>
+            <input id='submit_button' class="button-circle-dark" type="submit" value="Cut.me">
+        </form>
+
+        {%  endif %}
+
+    </div>
+</div>
+{% endblock %}
